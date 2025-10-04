@@ -1,7 +1,10 @@
 pipeline
 {
+tools{
+    maven 'maven'
+}
     agent {
-  l   abel 'node1'
+  l   label 'node1'
      }
     stages{
         stage('build'){
