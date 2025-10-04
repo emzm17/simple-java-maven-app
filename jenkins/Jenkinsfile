@@ -3,6 +3,10 @@ pipeline
 tools{
     maven 'maven'
 }
+tools {
+  jdk 'java8'
+}
+
     agent {
 
     label 'node1'
