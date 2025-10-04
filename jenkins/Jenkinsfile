@@ -21,6 +21,16 @@ label 'node1'
                 sh 'mvn clean package'
                 echo "Hello $name ${params.lastname}"
             }
+        }
+        stage('test'){
+            parallel{
+                stage('testA'){
+                    echo "This is test A"
+                }
+                stage('testB'){
+                    echo 'this is test B'
+                }
+            }
             post {
                 success {
                     archiveArtifacts artifacts: '**/target/*.jar'
