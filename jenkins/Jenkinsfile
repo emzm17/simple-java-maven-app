@@ -5,7 +5,7 @@ tools{
 }
     agent {
 
-  l   label 'node1'
+    label 'node1'
 
      }
     stages{
