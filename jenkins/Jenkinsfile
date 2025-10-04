@@ -14,7 +14,11 @@ tools{
         stage('build'){
             steps{
                 sh 'mvn clean package'
-                archiveArtifacts artifacts: '**/target/*.jar'
+            }
+            post {
+                success {
+                    archiveArtifacts artifacts: '**/target/*.jar'
+                }
             }
         }
     }
