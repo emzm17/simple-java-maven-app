@@ -4,7 +4,9 @@ tools{
     maven 'maven'
 }
     agent {
+
   l   label 'node1'
+
      }
     stages{
         stage('build'){
