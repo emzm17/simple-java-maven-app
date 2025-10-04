@@ -17,7 +17,7 @@ tools{
             }
             post{
                 success {
-                    archiveArtifacts artifacts: 'home/ubuntu/jenkins/workspace/test-pipeline/target/*.war'
+                    archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
         }
