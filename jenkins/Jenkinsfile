@@ -1,20 +1,17 @@
 pipeline
 {
-    agent none
+    agent {
+  l   abel 'node1'
+     }
     stages{
         stage('build'){
             steps{
-                echo "This is build Stage"
+                sh 'mvn clean package'
             }
-        }
-        stage('test'){
-            steps{
-                echo "This is test stage"
-            }
-        }
-        stage('deploy'){
-            steps{
-                echo 'This is deploy stage'
+            post{
+                sucess {
+                    archiveArtifacts artifacts: '**/target/*.war'
+                }
             }
         }
     }
