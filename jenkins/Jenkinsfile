@@ -19,7 +19,7 @@ label 'node1'
         stage('build'){
             steps{
                 sh 'mvn clean package'
-                echo "Hello" $name ${params.name}
+                echo "Hello $name ${params.name}"
             }
             post {
                 success {
