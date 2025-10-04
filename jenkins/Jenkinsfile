@@ -2,18 +2,24 @@ pipeline
 {
 tools{
     maven 'maven'
-   
-
 }
-    agent {
+environment{
+    name = 'dibya'
+}
+parameters{
+    string defaultValue: 'barwa', name: 'lastname'
+}
 
-    label 'node1'
+agent {
 
-     }
+label 'node1'
+
+    }
     stages{
         stage('build'){
             steps{
                 sh 'mvn clean package'
+                echo "Hello" $name ${params.name}
             }
             post {
                 success {
