@@ -1,45 +1,45 @@
-pipeline
-{
-tools{
-    maven 'maven'
-}
-environment{
-    name = 'dibya'
-}
-parameters{
-    string defaultValue: 'barwa', name: 'lastname'
-}
+pipeline {
+    agent { label 'node1' }
 
-agent {
-
-label 'node1'
-
+    tools {
+        maven 'maven'
     }
-    stages{
-        stage('build'){
-            steps{
+
+    environment {
+        NAME = 'dibya'       // Environment variables are usually uppercase
+    }
+
+    parameters {
+        string(name: 'lastname', defaultValue: 'barwa', description: 'Your last name')
+    }
+
+    stages {
+        stage('build') {
+            steps {
                 sh 'mvn clean package'
-                echo "Hello $name ${params.lastname}"
+                echo "Hello ${env.NAME} ${params.lastname}"
             }
         }
-        stage('test'){
-            parallel{
-                stage('testA'){
-                    steps{
+
+        stage('test') {
+            parallel {
+                stage('testA') {
+                    steps {
                         echo "This is test A"
                     }
                 }
-                stage('testB'){
-                    steps{
-                        echo 'this is test B'
-                   }
+                stage('testB') {
+                    steps {
+                        echo "This is test B"
+                    }
                 }
             }
-            post {
-                success {
-                    archiveArtifacts artifacts: '**/target/*.jar'
-                }
-            }
-        
+        }
+    }
+
+    post {
+        success {
+            archiveArtifacts artifacts: '**/target/*.jar'
+        }
     }
 }
